@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">dndCharacterGen</string>
+    <string name="headerText">DnD Character Generator</string>
+    <string name="charNameText">Character name:</string>
+    <string name="enterCharName">enter character name</string>
+    <string name="baseStatsText">Base stats:</string>
+    <string name="strText">Strength</string>
+    <string name="dexText">Dexterity</string>
+    <string name="conText">Constitution</string>
+    <string name="intText">Intelligence</string>
+    <string name="wisText">Wisdom</string>
+    <string name="chaText">Charisma</string>
+    <string name="defaultStatValue">10</string>
+    <string name="defaultStatMod">+0</string>
+    <string name="randomize">randomize</string>
+</resources>

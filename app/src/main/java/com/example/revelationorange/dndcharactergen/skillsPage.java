@@ -6,14 +6,20 @@ import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class skillsPage extends AppCompatActivity {
     private int idStart = 100;
     private int idCounter = idStart;
+    List<TextView> skillRows = new ArrayList<>();
+    TextView unusedRanksBox;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -23,56 +29,95 @@ public class skillsPage extends AppCompatActivity {
 
         ConstraintSet set = new ConstraintSet();
         ConstraintLayout skillsConstraint = findViewById(R.id.skillsConstraint);
-        skillsConstraint.setPadding(0,0,64*3, 64*3);
+        skillsConstraint.setPadding(0,0,0, (64+64)*3);
 
-        TextView tB = makebox();
+        TextView tB = findViewById(R.id.unusedRanksTextbox);
         tB.setText(R.string.unusedRanksText);
-        skillsConstraint.addView(tB);
 
-        Integer ranks = (MainActivity.globalChar.getSkillRanksPerLvl() + Math.max(MainActivity.globalChar.getBaseStatMods().get(3), 0))*4;
-        TextView ranksBox = makebox();
-        ranksBox.setText(ranks.toString());
-        skillsConstraint.addView(ranksBox);
+        Integer unusedRanks = (MainActivity.globalChar.getSkillRanksPerLvl() + Math.max(MainActivity.globalChar.getBaseStatMods().get(3), 0))*4;
+        unusedRanksBox = findViewById(R.id.unusedRanksVal);
+        unusedRanksBox.setText(unusedRanks.toString());
 
-        set.clone(skillsConstraint);
-        set.connect(tB.getId(), ConstraintSet.TOP, skillsConstraint.getId(), ConstraintSet.TOP, 48);
-        set.connect(tB.getId(), ConstraintSet.LEFT, skillsConstraint.getId(), ConstraintSet.LEFT, 48);
-        set.connect(ranksBox.getId(), ConstraintSet.LEFT, tB.getId(), ConstraintSet.RIGHT, 16*3);
-        set.connect(ranksBox.getId(), ConstraintSet.BASELINE, tB.getId(), ConstraintSet.BASELINE);
-        set.applyTo(skillsConstraint);
-
-        TextView repBox;
-        String skill;
-        int prevID, topMargin;
+        TextView skillBox, ranksBox;
+        Button plus, minus;
+        String skill, ranks;
+        List<TextView> skillBoxAnchors = new ArrayList<>();
+        int prevID, topMargin, midMargin = 4, leftMargin;
         for (int i = 0; i < MainActivity.globalChar.getSkillList().size(); i++) {
-            repBox = makebox();
+            skillBox = myLib.makewhitetextbox(this);
+            if (i > 0) { prevID = skillBoxAnchors.get(skillBoxAnchors.size()-1).getId(); topMargin = 12; leftMargin = 16; }
+            else { prevID = tB.getId(); topMargin = 16; leftMargin = 16; }
             skill = MainActivity.globalChar.getSkillList().get(i);
-            repBox.setText(skill);
-            skillsConstraint.addView(repBox);
+            skillBox.setText(skill);
+
+            ranksBox = myLib.makewhitetextbox(this);
+            ranks = MainActivity.globalChar.getSkillRanks().get(i).toString();
+            ranksBox.setText(ranks);
+
+            plus = myLib.makebutton(this, true);
+            minus = myLib.makebutton(this, false);
+//            plus = makefabbutton(true);
+//            minus = makefabbutton(false);
+            plus.setOnClickListener(addSkillPoint(plus, i));
+            minus.setOnClickListener(subSkillPoint(minus, i));
+
+            skillsConstraint.addView(skillBox);
+            skillsConstraint.addView(ranksBox);
+            skillsConstraint.addView(plus);
+            skillsConstraint.addView(minus);
+
             set.clone(skillsConstraint);
-            if (i > 0) { prevID = repBox.getId()-1; topMargin = 4; }
-            else { prevID = repBox.getId()-2; topMargin = 16; }
-            set.connect(repBox.getId(), ConstraintSet.TOP, prevID, ConstraintSet.BOTTOM, topMargin * 3);
-            set.connect(repBox.getId(), ConstraintSet.LEFT, prevID, ConstraintSet.LEFT, 0);
+            set.connect(skillBox.getId(), ConstraintSet.TOP, prevID, ConstraintSet.BOTTOM, topMargin * 3);
+            set.connect(skillBox.getId(), ConstraintSet.LEFT, skillsConstraint.getId(), ConstraintSet.LEFT, leftMargin*3);
+            set.connect(minus.getId(), ConstraintSet.TOP, skillBox.getId(), ConstraintSet.BOTTOM, midMargin*3);
+            set.connect(minus.getId(), ConstraintSet.LEFT, skillBox.getId(), ConstraintSet.LEFT, 0);
+            set.connect(ranksBox.getId(), ConstraintSet.TOP, skillBox.getId(), ConstraintSet.BOTTOM, midMargin*3);
+            set.connect(ranksBox.getId(), ConstraintSet.LEFT, minus.getId(), ConstraintSet.RIGHT, 16*3);
+            set.connect(plus.getId(), ConstraintSet.TOP, skillBox.getId(), ConstraintSet.BOTTOM, midMargin*3);
+            set.connect(plus.getId(), ConstraintSet.LEFT, ranksBox.getId(), ConstraintSet.RIGHT, 16*3);
             set.applyTo(skillsConstraint);
+
+            skillBoxAnchors.add(minus);
+            skillRows.add(ranksBox);
         }
     }
 
     int getNextID() { return idCounter++; }
     int getCurID() { return idCounter; }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    TextView makebox() {
-        TextView retBox = new TextView(this);
-        retBox.setTextAppearance(R.style.TextAppearance_AppCompat_Large);
-        retBox.setTextColor(0xFFFFFFFF);
-        retBox.setBackgroundResource(R.drawable.black);
-        retBox.setId(getNextID());
-        return retBox;
-    }
-
     public void backToMain(View v) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
+
+    View.OnClickListener addSkillPoint(final Button b, final int index) {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Integer sp = MainActivity.globalChar.getSkillRanks().get(index)+1;
+                MainActivity.globalChar.getSkillRanks().set(index, sp);
+                skillRows.get(index).setText(sp.toString());
+                Integer newUsp = Integer.parseInt(unusedRanksBox.getText().toString())-1;
+                unusedRanksBox.setText(newUsp.toString());
+            }
+        };
+    }
+
+    View.OnClickListener subSkillPoint(final Button b, final int index) {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Integer sp = MainActivity.globalChar.getSkillRanks().get(index)-1;
+                MainActivity.globalChar.getSkillRanks().set(index, sp);
+                skillRows.get(index).setText(sp.toString());
+                Integer newUsp = Integer.parseInt(unusedRanksBox.getText().toString())+1;
+                unusedRanksBox.setText(newUsp.toString());
+            }
+        };
+    }
+
+//    public void onClick(View v) {
+//        Integer x = v.getBaseline();
+//        Toast.makeText(this, x.toString(), Toast.LENGTH_LONG).show();
+//    }
 }

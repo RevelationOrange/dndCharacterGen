@@ -19,7 +19,8 @@
         <activity
             android:name=".skillsPage"
             android:label="@string/title_activity_skills_page"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".featsPage"></activity>
     </application>
 
 </manifest>

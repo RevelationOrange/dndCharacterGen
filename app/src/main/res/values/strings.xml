@@ -28,4 +28,5 @@
     <string name="levelText">Level</string>
     <string name="defaultLevelValue">1</string>
     <string name="unusedRanksText">Unused skill ranks</string>
+    <string name="saveFeatsText">save feats</string>
 </resources>

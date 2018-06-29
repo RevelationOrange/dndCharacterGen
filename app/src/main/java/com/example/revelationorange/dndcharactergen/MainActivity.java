@@ -25,7 +25,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 //    private static final String CHANNEL_ID = "dndnotif";
-    public static final String EXTRA_CHARACTER = "com.example.myfirstapp.CHARACTER";
+//    public static final String EXTRA_CHARACTER = "com.example.myfirstapp.CHARACTER";
     public static DndChar globalChar = new DndChar();
     List<TextView> statBoxes = new ArrayList<>();
     List<TextView> statModBoxes = new ArrayList<>();
@@ -57,8 +57,11 @@ public class MainActivity extends AppCompatActivity {
             raceDropdown.setSelection(globalChar.getRaceID());
         }
         else {
-            DndChar.setup(getResources().openRawResource(R.raw.skills));
+            DndChar.setup(getResources().openRawResource(R.raw.skills), getResources().openRawResource(R.raw.feats));
         }
+        System.out.println(DndChar.casterList);
+        System.out.println(DndChar.casterList.contains("Cleric"));
+        System.out.println("caster list");
     }
 
     /*
@@ -118,9 +121,12 @@ public class MainActivity extends AppCompatActivity {
             pm = (mod < 0) ? "" : "+";
             textBox.setText(String.format("%s%s", pm, mod));
         }
+
+        globalChar.setChClass(classDropdown.getSelectedItem().toString(), classDropdown.getSelectedItemPosition());
+        globalChar.setRace(raceDropdown.getSelectedItem().toString(), raceDropdown.getSelectedItemPosition());
     }
 
-    public void goToskills(View v) {
+    public void goToSkills(View v) {
         if (globalChar.isRolled()) {
             globalChar.setChClass(classDropdown.getSelectedItem().toString(), classDropdown.getSelectedItemPosition());
             globalChar.setRace(raceDropdown.getSelectedItem().toString(), raceDropdown.getSelectedItemPosition());
@@ -130,6 +136,29 @@ public class MainActivity extends AppCompatActivity {
         else {
             Toast.makeText(this,"You have to roll stats before dealing with skills", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void goToFeats(View v) {
+        if (globalChar.isRolled()) {
+            globalChar.setChClass(classDropdown.getSelectedItem().toString(), classDropdown.getSelectedItemPosition());
+            globalChar.setRace(raceDropdown.getSelectedItem().toString(), raceDropdown.getSelectedItemPosition());
+            Intent intent = new Intent(this, featsPage.class);
+            startActivity(intent);
+        }
+        else {
+            Toast.makeText(this,"You have to roll stats before dealing with feats", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void goToSpells(View v) {
+        if (globalChar.isRolled()) {
+            if (globalChar.isCaster()) {
+                // intent stuff
+            } else {
+                Toast.makeText(this, "You must be a spellcaster class in order to use spells", Toast.LENGTH_SHORT).show();
+            }
+        }
+        else { Toast.makeText(this,"You have to roll stats before dealing with spells", Toast.LENGTH_SHORT).show(); }
     }
 
     // straight from stackoverflow

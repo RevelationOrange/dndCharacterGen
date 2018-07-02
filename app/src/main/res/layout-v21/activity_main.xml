@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/headerText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/mainConstr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/charNameText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/black"
+                android:text="@string/charNameText"
+                android:textAppearance="@android:style/TextAppearance.Material.Large"
+                android:textColor="@android:color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/veryBottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="300dp"
+                android:text="TextView"
+                android:visibility="invisible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/chaText" />
+
+            <EditText
+                android:id="@+id/charNameEnter"
+                android:layout_width="151dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:ems="10"
+                android:hint="@string/enterCharName"
+                android:inputType="textPersonName"
+                app:layout_constraintBaseline_toBaselineOf="@+id/charNameText"
+                app:layout_constraintStart_toEndOf="@+id/charNameText" />
+
+            <TextView
+                android:id="@+id/baseStatsText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/black"
+                android:text="@string/baseStatsText"
+                android:textAppearance="@android:style/TextAppearance.Material.Large"
+                android:textColor="@android:color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/charNameText" />
+
+            <TextView
+                android:id="@+id/strText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/red"
+                android:text="@string/strText"
+                android:textAppearance="@android:style/TextAppearance.Material.Large"
+                android:textColor="@android:color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/baseStatsText" />
+
+            <TextView
+                android:id="@+id/strVal"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:background="@drawable/red"
+                android:text="@string/defaultStatValue"
+                android:textAppearance="@android:style/TextAppearance.Material.Large"
+                android:textColor="@android:color/white"
+                app:layout_constraintBaseline_toBaselineOf="@+id/strText"
+                app:layout_constraintStart_toStartOf="@+id/conVal" />
+
+            <TextView
+                android:id="@+id/dexText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/green"
+                android:text="@string/dexText"
+                android:textAppearance="@android:style/TextAppearance.Material.Large"
+                android:textColor="@android:color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/strText" />
+
+            <TextView
+                android:id="@+id/dexVal"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:background="@drawable/green"
+                android:text="@string/defaultStatValue"
+                android:textAppearance="@android:style/TextAppearance.Material.Large"
+                android:textColor="@android:color/white"
+                app:layout_constraintBaseline_toBaselineOf="@+id/dexText"
+                app:layout_constraintStart_toStartOf="@+id/conVal" />
+
+            <TextView
+                android:id="@+id/conText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/orange"
+                android:text="@string/conText"
+                android:textAppearance="@android:style/TextAppearance.Material.Large"
+                android:textColor="@android:color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/dexText" />
+
+            <TextView
+                android:id="@+id/conVal"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginStart="32dp"
+                android:background="@drawable/orange"
+                android:text="@string/defaultStatValue"
+                android:textAppearance="@android:style/TextAppearance.Material.Large"
+                android:textColor="@android:color/white"
+                app:layout_constraintBaseline_toBaselineOf="@+id/conText"
+                app:layout_constraintStart_toEndOf="@+id/conText" />
+
+            <TextView
+                android:id="@+id/strMod"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/red"
+                android:text="@string/defaultStatMod"
+                android:textAppearance="@android:style/TextAppearance.Material.Large"
+                android:textColor="@android:color/white"
+                app:layout_constraintBaseline_toBaselineOf="@+id/strVal"
+                app:layout_constraintStart_toStartOf="@+id/dexMod" />
+
+            <TextView
+                android:id="@+id/dexMod"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/green"
+                android:text="@string/defaultStatMod"
+                android:textAppearance="@android:style/TextAppearance.Material.Large"
+                android:textColor="@android:color/white"
+                app:layout_constraintBaseline_toBaselineOf="@+id/dexVal"
+                app:layout_constraintStart_toStartOf="@+id/conMod" />
+
+            <TextView
+                android:id="@+id/conMod"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="80dp"
+                android:layout_marginStart="80dp"
+                android:background="@drawable/orange"
+                android:text="@string/defaultStatMod"
+                android:textAppearance="@android:style/TextAppearance.Material.Large"
+                android:textColor="@android:color/white"
+                app:layout_constraintBaseline_toBaselineOf="@+id/conVal"
+                app:layout_constraintStart_toEndOf="@+id/conText" />
+
+            <TextView
+                android:id="@+id/intText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/blue"
+                android:text="@string/intText"
+                android:textAppearance="@android:style/TextAppearance.Material.Large"
+                android:textColor="@android:color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/conText" />
+
+            <TextView
+                android:id="@+id/wisText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/yellow"
+                android:text="@string/wisText"
+                android:textAppearance="@android:style/TextAppearance.Material.Large"
+                android:textColor="@android:color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/intText" />
+
+            <TextView
+                android:id="@+id/chaText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/purple"
+                android:text="@string/chaText"
+                android:textAppearance="@android:style/TextAppearance.Material.Large"
+                android:textColor="@android:color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/wisText" />
+
+            <TextView
+                android:id="@+id/intVal"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:background="@drawable/blue"
+                android:text="@string/defaultStatValue"
+                android:textAppearance="@android:style/TextAppearance.Material.Large"
+                android:textColor="@android:color/white"
+                app:layout_constraintBaseline_toBaselineOf="@+id/intText"
+                app:layout_constraintStart_toStartOf="@+id/conVal" />
+
+            <TextView
+                android:id="@+id/wisVal"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:background="@drawable/yellow"
+                android:text="@string/defaultStatValue"
+                android:textAppearance="@android:style/TextAppearance.Material.Large"
+                android:textColor="@android:color/white"
+                app:layout_constraintBaseline_toBaselineOf="@+id/wisText"
+                app:layout_constraintStart_toStartOf="@+id/intVal" />
+
+            <TextView
+                android:id="@+id/chaVal"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:background="@drawable/purple"
+                android:text="@string/defaultStatValue"
+                android:textAppearance="@android:style/TextAppearance.Material.Large"
+                android:textColor="@android:color/white"
+                app:layout_constraintBaseline_toBaselineOf="@+id/chaText"
+                app:layout_constraintStart_toStartOf="@+id/wisVal" />
+
+            <TextView
+                android:id="@+id/intMod"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/blue"
+                android:text="@string/defaultStatMod"
+                android:textAppearance="@android:style/TextAppearance.Material.Large"
+                android:textColor="@android:color/white"
+                app:layout_constraintBaseline_toBaselineOf="@+id/intVal"
+                app:layout_constraintStart_toStartOf="@+id/conMod" />
+
+            <TextView
+                android:id="@+id/wisMod"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/yellow"
+                android:text="@string/defaultStatMod"
+                android:textAppearance="@android:style/TextAppearance.Material.Large"
+                android:textColor="@android:color/white"
+                app:layout_constraintBaseline_toBaselineOf="@+id/wisVal"
+                app:layout_constraintStart_toStartOf="@+id/intMod" />
+
+            <TextView
+                android:id="@+id/chaMod"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/purple"
+                android:text="@string/defaultStatMod"
+                android:textAppearance="@android:style/TextAppearance.Material.Large"
+                android:textColor="@android:color/white"
+                app:layout_constraintBaseline_toBaselineOf="@+id/chaVal"
+                app:layout_constraintStart_toStartOf="@+id/wisMod" />
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:onClick="rollStats"
+                android:text="@string/randomize"
+                app:layout_constraintBaseline_toBaselineOf="@+id/baseStatsText"
+                app:layout_constraintStart_toEndOf="@+id/baseStatsText" />
+
+            <TextView
+                android:id="@+id/raceText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="48dp"
+                android:background="@drawable/black"
+                android:text="@string/raceText"
+                android:textAppearance="@android:style/TextAppearance.Material.Large"
+                android:textColor="@android:color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/chaText" />
+
+            <TextView
+                android:id="@+id/classText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/black"
+                android:text="@string/classText"
+                android:textAppearance="@android:style/TextAppearance.Material.Large"
+                android:textColor="@android:color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/raceSelect" />
+
+            <Spinner
+                android:id="@+id/raceSelect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:background="@drawable/blackoutline"
+                app:layout_constraintStart_toEndOf="@+id/raceText"
+                app:layout_constraintTop_toTopOf="@+id/raceText" />
+
+            <Spinner
+                android:id="@+id/classSelect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:background="@drawable/blackoutline"
+                app:layout_constraintStart_toEndOf="@+id/classText"
+                app:layout_constraintTop_toTopOf="@+id/classText" />
+
+            <ImageView
+                android:id="@+id/dropdButton0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/raceSelect"
+                app:layout_constraintEnd_toEndOf="@+id/raceSelect"
+                app:layout_constraintTop_toTopOf="@+id/raceSelect"
+                app:srcCompat="@android:drawable/arrow_down_float" />
+
+            <ImageView
+                android:id="@+id/dropdButton1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/classSelect"
+                app:layout_constraintEnd_toEndOf="@+id/classSelect"
+                app:layout_constraintTop_toTopOf="@+id/classSelect"
+                app:srcCompat="@android:drawable/arrow_down_float" />
+
+            <Button
+                android:id="@+id/featsButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:onClick="goToFeats"
+                android:text="@string/featsText"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/classSelect" />
+
+            <Button
+                android:id="@+id/skillsButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:onClick="goToSkills"
+                android:text="@string/skillsText"
+                app:layout_constraintBaseline_toBaselineOf="@+id/featsButton"
+                app:layout_constraintStart_toEndOf="@+id/featsButton" />
+
+            <Button
+                android:id="@+id/spellsButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:onClick="goToSpells"
+                android:text="@string/spellsText"
+                app:layout_constraintBaseline_toBaselineOf="@+id/skillsButton"
+                app:layout_constraintStart_toEndOf="@+id/skillsButton" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginStart="16dp"
+                android:background="@drawable/black"
+                android:text="@string/levelText"
+                android:textAppearance="@android:style/TextAppearance.Material.Large"
+                android:textColor="@android:color/white"
+                app:layout_constraintBaseline_toBaselineOf="@+id/raceText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/dropdButton0" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/black"
+                android:text="@string/defaultLevelValue"
+                android:textAppearance="@android:style/TextAppearance.Material.Large"
+                android:textColor="@android:color/white"
+                app:layout_constraintEnd_toEndOf="@+id/textView5"
+                app:layout_constraintStart_toStartOf="@+id/textView5"
+                app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+            <Button
+                android:id="@+id/saveCharButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:onClick="saveCharacter"
+                android:text="@string/saveCharacterText"
+                app:layout_constraintEnd_toStartOf="@+id/sendCharButton"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/featsButton" />
+
+            <Button
+                android:id="@+id/sendCharButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:onClick="sendCharacter"
+                android:text="@string/sendCharacterText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/saveCharButton"
+                app:layout_constraintTop_toBottomOf="@+id/featsButton" />
+
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>

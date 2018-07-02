@@ -1,10 +1,12 @@
 package com.example.revelationorange.dndcharactergen;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -21,14 +23,19 @@ public class DndChar {
     static String[] classes = {"Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Wizard"};
     static String[] alignments0 = {"Lawful", "Neutral", "Chaotic"};
     static String[] alignments1 = {"Good", "Neutral", "Evil"};
+    static String[] statNamesShort = {"str", "dex", "con", "int", "wis", "cha"};
+    static String[] statNamesLong = {"strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma"};
     static HashMap<String, List<String>> skillsDict = new HashMap<>();
     static List<String> featNames = new ArrayList<>();
 
-    String chName, plName, chClass, race;
+    static JSONObject classDict = new JSONObject();
+
+    private String chName, plName, chClass, race;
     private List<Integer> baseStats = new ArrayList<>(nBaseStats);
     private List<Integer> baseStatMods = new ArrayList<>(nBaseStats);
     private List<String> skillList = new ArrayList<>();
     private List<String> featsList = new ArrayList<>();
+    private HashMap<Integer, List<String>> spellList = new HashMap<>();
     private List<Integer> skillRanks = new ArrayList<>();
     private Integer Str, Dex, Con, Int, Wis, Cha, level, xp, speed, initiative, ac, hitDice, skillRanksPerLvl, chClassID, raceID;
     private boolean rolled, isCaster;
@@ -44,13 +51,13 @@ public class DndChar {
         this.race = "";
     }
 
-    static void setup(InputStream skillsIS, InputStream featsIS) {
+    static void setup(InputStream skillsIS, InputStream featsIS, InputStream classDataIS) {
         InputStreamReader isr = new InputStreamReader(skillsIS);
         BufferedReader br = new BufferedReader(isr);
         String[] lineArr;
+        String lineStr;
 
         try {
-            String lineStr;
             while ((lineStr = br.readLine()) != null) {
                 List<String> skillNames = new ArrayList<>();
                 lineArr = lineStr.split(",");
@@ -65,11 +72,16 @@ public class DndChar {
         br = new BufferedReader(isr);
 
         try {
-            String lineStr;
             while ((lineStr = br.readLine()) != null) {
                 featNames.add(lineStr);
             }
         } catch (IOException e) { e.printStackTrace(); }
+
+        try {
+            classDict = new JSONObject(myLib.loadJSONFromAsset(classDataIS));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     void rollStats() {
@@ -100,17 +112,26 @@ public class DndChar {
         this.chClassID = chClassID;
         for (String s: this.skillList) { this.skillRanks.add(0); }
         this.isCaster = casterList.contains(this.chClass);
+        if (this.isCaster) {
+
+        }
     }
     public void setRace(String race, int raceID) { this.race = race; this.raceID = raceID; }
+    public void setChName(String chName) { this.chName = chName; }
     public void addFeat(String ftName) { this.featsList.add(ftName); }
+    public void addSpell(String spName, Integer lvl) { this.spellList.get(lvl).add(spName); }
     public void clearFeats() { this.featsList.clear(); }
+    public void clearSpells() { this.spellList.clear(); }
 
+    public String getChName() { return chName; }
+    public Integer getLevel() { return level; }
     public List<Integer> getBaseStats() { return this.baseStats; }
     public List<Integer> getBaseStatMods() { return baseStatMods; }
     public Integer getSkillRanksPerLvl() { return skillRanksPerLvl; }
     public List<String> getSkillList() { return skillList; }
     public List<Integer> getSkillRanks() { return skillRanks; }
     public List<String> getFeatsList() { return featsList; }
+    public HashMap<Integer, List<String>> getSpellList() { return spellList; }
     public String getChClass() { return chClass; }
     public Integer getChClassID() { return chClassID; }
     public String getRace() { return race; }

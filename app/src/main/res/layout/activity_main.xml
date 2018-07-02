@@ -35,20 +35,8 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="@string/charNameText"
-                android:textAppearance="@android:style/TextAppearance.Material.Medium"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="300dp"
-                android:text="TextView"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/chaText" />
 
             <EditText
                 android:id="@+id/charNameEnter"
@@ -70,7 +58,6 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="24dp"
                 android:text="@string/baseStatsText"
-                android:textAppearance="@android:style/TextAppearance.Material.Medium"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/charNameText" />
 
@@ -83,7 +70,6 @@
                 android:layout_marginTop="32dp"
                 android:background="@drawable/red"
                 android:text="@string/strText"
-                android:textAppearance="@android:style/TextAppearance.Material.Large"
                 android:textColor="@android:color/white"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/baseStatsText" />
@@ -95,7 +81,6 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginStart="16dp"
                 android:text="@string/defaultStatValue"
-                android:textAppearance="@android:style/TextAppearance.Material.Large"
                 app:layout_constraintBaseline_toBaselineOf="@+id/strText"
                 app:layout_constraintStart_toEndOf="@+id/conText" />
 
@@ -108,7 +93,6 @@
                 android:layout_marginTop="16dp"
                 android:background="@drawable/red_solid"
                 android:text="@string/dexText"
-                android:textAppearance="@android:style/TextAppearance.Material.Large"
                 android:textColor="@android:color/white"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/strText" />
@@ -120,7 +104,6 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginStart="16dp"
                 android:text="@string/defaultStatValue"
-                android:textAppearance="@android:style/TextAppearance.Material.Large"
                 app:layout_constraintBaseline_toBaselineOf="@+id/dexText"
                 app:layout_constraintStart_toEndOf="@+id/conText" />
 
@@ -133,7 +116,6 @@
                 android:layout_marginTop="16dp"
                 android:background="@drawable/ic_notification_overlay_2"
                 android:text="@string/conText"
-                android:textAppearance="@android:style/TextAppearance.Material.Large"
                 android:textColor="@android:color/white"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/dexText" />
@@ -145,7 +127,6 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginStart="16dp"
                 android:text="@string/defaultStatValue"
-                android:textAppearance="@android:style/TextAppearance.Material.Large"
                 app:layout_constraintBaseline_toBaselineOf="@+id/conText"
                 app:layout_constraintStart_toEndOf="@+id/conText" />
 
@@ -156,7 +137,6 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginStart="16dp"
                 android:text="@string/defaultStatMod"
-                android:textAppearance="@android:style/TextAppearance.Material.Large"
                 app:layout_constraintBaseline_toBaselineOf="@+id/strVal"
                 app:layout_constraintStart_toEndOf="@+id/strVal" />
 
@@ -167,7 +147,6 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginStart="16dp"
                 android:text="@string/defaultStatMod"
-                android:textAppearance="@android:style/TextAppearance.Material.Large"
                 app:layout_constraintBaseline_toBaselineOf="@+id/dexVal"
                 app:layout_constraintStart_toEndOf="@+id/dexVal" />
 
@@ -178,7 +157,6 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginStart="16dp"
                 android:text="@string/defaultStatMod"
-                android:textAppearance="@android:style/TextAppearance.Material.Large"
                 app:layout_constraintBaseline_toBaselineOf="@+id/conVal"
                 app:layout_constraintStart_toEndOf="@+id/conVal" />
 
@@ -191,7 +169,6 @@
                 android:layout_marginTop="16dp"
                 android:background="@drawable/ic_notification_overlay_2"
                 android:text="@string/intText"
-                android:textAppearance="@android:style/TextAppearance.Material.Large"
                 android:textColor="@android:color/white"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/conText" />
@@ -205,7 +182,6 @@
                 android:layout_marginTop="16dp"
                 android:background="@drawable/ic_notification_overlay_2"
                 android:text="@string/wisText"
-                android:textAppearance="@android:style/TextAppearance.Material.Large"
                 android:textColor="@android:color/white"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/intText" />
@@ -219,7 +195,6 @@
                 android:layout_marginTop="16dp"
                 android:background="@drawable/ic_notification_overlay_2"
                 android:text="@string/chaText"
-                android:textAppearance="@android:style/TextAppearance.Material.Large"
                 android:textColor="@android:color/white"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/wisText" />
@@ -231,7 +206,6 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginStart="16dp"
                 android:text="@string/defaultStatValue"
-                android:textAppearance="@android:style/TextAppearance.Material.Large"
                 app:layout_constraintBaseline_toBaselineOf="@+id/intText"
                 app:layout_constraintStart_toEndOf="@+id/conText" />
 
@@ -242,7 +216,6 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginStart="16dp"
                 android:text="@string/defaultStatValue"
-                android:textAppearance="@android:style/TextAppearance.Material.Large"
                 app:layout_constraintBaseline_toBaselineOf="@+id/wisText"
                 app:layout_constraintStart_toEndOf="@+id/conText" />
 
@@ -253,7 +226,6 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginStart="16dp"
                 android:text="@string/defaultStatValue"
-                android:textAppearance="@android:style/TextAppearance.Material.Large"
                 app:layout_constraintBaseline_toBaselineOf="@+id/chaText"
                 app:layout_constraintStart_toEndOf="@+id/conText" />
 
@@ -264,7 +236,6 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginStart="16dp"
                 android:text="@string/defaultStatMod"
-                android:textAppearance="@android:style/TextAppearance.Material.Large"
                 app:layout_constraintBaseline_toBaselineOf="@+id/intVal"
                 app:layout_constraintStart_toEndOf="@+id/intVal" />
 
@@ -275,7 +246,6 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginStart="16dp"
                 android:text="@string/defaultStatMod"
-                android:textAppearance="@android:style/TextAppearance.Material.Large"
                 app:layout_constraintBaseline_toBaselineOf="@+id/wisVal"
                 app:layout_constraintStart_toEndOf="@+id/wisVal" />
 
@@ -286,7 +256,6 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginStart="16dp"
                 android:text="@string/defaultStatMod"
-                android:textAppearance="@android:style/TextAppearance.Material.Large"
                 app:layout_constraintBaseline_toBaselineOf="@+id/chaVal"
                 app:layout_constraintStart_toEndOf="@+id/chaVal" />
 

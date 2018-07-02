@@ -23,10 +23,14 @@
     <string name="featsText">Feats</string>
     <string name="skillsText">Skills</string>
     <string name="spellsText">Spells</string>
+    <string name="spellsKnownText">Spells known</string>
+    <string name="saveSelectedSpellsText">save selected spells</string>
     <string name="title_activity_skills_page">skillsPage</string>
     <string name="action_settings">Settings</string>
     <string name="levelText">Level</string>
     <string name="defaultLevelValue">1</string>
     <string name="unusedRanksText">Unused skill ranks</string>
     <string name="saveFeatsText">save feats</string>
+    <string name="saveCharacterText">save character</string>
+    <string name="sendCharacterText">send character</string>
 </resources>

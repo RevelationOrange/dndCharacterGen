@@ -1,0 +1,11 @@
+Barbarian,acrobatics,climb,craft,handle animal,intimidate,knowledge (nature),perception,ride,survival,swim,,,,,,,,,,,
+Bard,acrobatics,appraise,bluff,climb,craft,diplomacy,disguise,escape artist,intimidate,knowledge (any),linguistics,perception,perform,profession,sense motive,sleight of hand,spellcraft,stealth,use magic device,,
+Cleric,appraise,craft,diplomacy,heal,knowledge (arcana),knowledge (history),knowledge (nobility),knowledge(planes),knowledge(religion),linguistics,profession,sense motive,spellcraft,,,,,,,,
+Druid,climb,craft,fly,handle animal,heal,knowledge (geography),knowledge (nature),perception,profession,ride,spellcraft,survival,swim,,,,,,,,
+Fighter,climb,craft,handle animal,intimidate,knowledge (dungeoneering),knowledge (engineering),profession,ride,survival,swim,,,,,,,,,,,
+Monk,acrobatics,climb,craft,escape artist,intimidate,knowledge (history),knowledge (religion),perception,perform,profession,ride,sense motive,stealth,swim,,,,,,,
+Paladin,craft,diplomacy,handle animal,heal,knowledge (nobility),knowledge (religion),profession,ride,sense motive,spellcraft,,,,,,,,,,,
+Ranger,climb,craft,handle animal,heal,intimidate,knowledge (dungeoneering),knowledge (geography),knowledge(nature),perception,profession,ride,spellcraft,stealth,survival,swim,,,,,,
+Rogue,acrobatics,appraise,bluff,climb,craft,diplomacy,disable device,disguise,escape artist,intimidate,knowledge (dungeoneering),knowledge (local),linguistics,perception,perform,profession,sense motive,sleight of hand,stealth,swim,use magic device
+Sorcerer,appraise,bluff,craft,fly,intimidate,knowledge (arcana),profession,spellcraft,use magic device,,,,,,,,,,,,
+Wizard,appraise,craft,fly,knowledge (any),linguistics,profession,spellcraft,,,,,,,,,,,,,,

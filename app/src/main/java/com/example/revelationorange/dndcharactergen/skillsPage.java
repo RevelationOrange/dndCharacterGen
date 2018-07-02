@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -34,7 +33,7 @@ public class skillsPage extends AppCompatActivity {
         TextView tB = findViewById(R.id.unusedRanksTextbox);
         tB.setText(R.string.unusedRanksText);
 
-        Integer unusedRanks = (MainActivity.globalChar.getSkillRanksPerLvl() + Math.max(MainActivity.globalChar.getBaseStatMods().get(3), 0))*4;
+        Integer unusedRanks = (MainActivity.globalChar.getSkillRanksPerLvl() + Math.max(MainActivity.globalChar.getBaseStatMods().get(3), 0));
         unusedRanksBox = findViewById(R.id.unusedRanksVal);
         unusedRanksBox.setText(unusedRanks.toString());
 
@@ -54,8 +53,8 @@ public class skillsPage extends AppCompatActivity {
             ranks = MainActivity.globalChar.getSkillRanks().get(i).toString();
             ranksBox.setText(ranks);
 
-            plus = myLib.makebutton(this, true);
-            minus = myLib.makebutton(this, false);
+            plus = myLib.makePMbutton(this, true);
+            minus = myLib.makePMbutton(this, false);
 //            plus = makefabbutton(true);
 //            minus = makefabbutton(false);
             plus.setOnClickListener(addSkillPoint(plus, i));

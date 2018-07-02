@@ -1,13 +1,19 @@
 package com.example.revelationorange.dndcharactergen;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Build;
+import android.os.Environment;
+import android.support.constraint.ConstraintLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -20,13 +26,21 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 //    private static final String CHANNEL_ID = "dndnotif";
 //    public static final String EXTRA_CHARACTER = "com.example.myfirstapp.CHARACTER";
+    public static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 7;
     public static DndChar globalChar = new DndChar();
+    public File saveDir;
     List<TextView> statBoxes = new ArrayList<>();
     List<TextView> statModBoxes = new ArrayList<>();
     Spinner raceDropdown;
@@ -39,11 +53,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        saveDir = new File(getPublicStorageDir("dndChars").toString());
         raceDropdown = findViewById(R.id.raceSelect);
         adapter0 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, DndChar.races);
         classDropdown = findViewById(R.id.classSelect);
         adapter1 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, DndChar.classes);
         setupBoxes();
+        ConstraintLayout mainConstraint = findViewById(R.id.mainConstr);
+        mainConstraint.setPadding(0,0,0, (64)*3);
         setupUI(findViewById(R.id.parent));
 //        createNotificationChannel();
         if (globalChar.isRolled()) {
@@ -57,31 +74,9 @@ public class MainActivity extends AppCompatActivity {
             raceDropdown.setSelection(globalChar.getRaceID());
         }
         else {
-            DndChar.setup(getResources().openRawResource(R.raw.skills), getResources().openRawResource(R.raw.feats));
-        }
-        System.out.println(DndChar.casterList);
-        System.out.println(DndChar.casterList.contains("Cleric"));
-        System.out.println("caster list");
-    }
-
-    /*
-    private void createNotificationChannel() {
-        // Create the NotificationChannel, but only on API 26+ because
-        // the NotificationChannel class is new and not in the support library
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            CharSequence name = getString(R.string.channel_name);
-            String description = getString(R.string.channel_description);
-            int importance = NotificationManager.IMPORTANCE_DEFAULT;
-            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
-            channel.setDescription(description);
-            // Register the channel with the system; you can't change the importance
-            // or other notification behaviors after this
-            NotificationManager notificationManager = getSystemService(NotificationManager.class);
-            notificationManager.createNotificationChannel(channel);
+            DndChar.setup(getResources().openRawResource(R.raw.skills), getResources().openRawResource(R.raw.feats), getResources().openRawResource(R.raw.classdata));
         }
     }
-    */
-
 
     void setupBoxes() {
         statBoxes.clear();
@@ -152,13 +147,101 @@ public class MainActivity extends AppCompatActivity {
 
     public void goToSpells(View v) {
         if (globalChar.isRolled()) {
+            String cl = classDropdown.getSelectedItem().toString();
+            globalChar.setChClass(cl, classDropdown.getSelectedItemPosition());
+            globalChar.setRace(raceDropdown.getSelectedItem().toString(), raceDropdown.getSelectedItemPosition());
             if (globalChar.isCaster()) {
+                Class intentClass;
+                /*if (cl.equals("Wizard")) {
+                    intentClass = wizardSpells.class;
+                }
+                else { return; }*/
+                intentClass = wizardSpells.class;
+
+                Intent intent = new Intent(this, intentClass);
+                startActivity(intent);
                 // intent stuff
             } else {
                 Toast.makeText(this, "You must be a spellcaster class in order to use spells", Toast.LENGTH_SHORT).show();
             }
         }
         else { Toast.makeText(this,"You have to roll stats before dealing with spells", Toast.LENGTH_SHORT).show(); }
+    }
+
+    public void saveCharacter(View v) {
+        if (checkPermissions()) {
+            if (!saveDir.exists()) { saveDir.mkdir(); }
+            String charFilename;
+            charFilename = ((TextView) findViewById(R.id.charNameEnter)).getText().toString();
+            if (charFilename.length() > 0) {
+                globalChar.setChName(charFilename);
+                charFilename += ".csv";
+                File saveFile = new File(saveDir + File.separator + charFilename);
+
+                List<Integer> bStats = globalChar.getBaseStats();
+                List<Integer> bStatMods = globalChar.getBaseStatMods();
+
+                CSVBuilder csvString = new CSVBuilder();
+                csvString.addLine(globalChar.getChName());
+                csvString.addLine("Level " + globalChar.getLevel(), globalChar.getRace(), globalChar.getChClass());
+                for (int i = 0; i < DndChar.statNamesShort.length; i++) {
+                    csvString.addLine(DndChar.statNamesShort[i], bStats.get(i), bStatMods.get(i));
+                }
+                try {
+                    FileWriter fw = new FileWriter(saveFile);
+                    fw.write(csvString.getStr());
+                    fw.flush();
+                    fw.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            else { Toast.makeText(this, "You have to enter a character name to save a file", Toast.LENGTH_SHORT).show(); }
+        }
+    }
+
+    public void sendCharacter(View v) {
+        if (checkPermissions()) {
+            Intent intent = new Intent(this, sendPage.class);
+            intent.putExtra("fileLoc", saveDir.toString());
+            startActivity(intent);
+        }
+    }
+
+
+
+    boolean checkPermissions() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            // Permission is not granted
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                // Show an explanation to the user *asynchronously* -- don't block
+                // this thread waiting for the user's response! After the user
+                // sees the explanation, try again to request the permission.
+            }
+            else {
+                // No explanation needed; request the permission
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                        MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
+
+                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
+                // app-defined int constant. The callback method gets the
+                // result of the request.
+            }
+            return false;
+        }
+        else { return true; }
+    }
+
+    public File getPublicStorageDir(String dirname) {
+        // Get the directory for the user's public documents directory.
+        File file = new File(Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_DOCUMENTS), dirname);
+        if (!file.mkdirs()) {
+            System.out.println("Directory not created");
+        }
+        return file;
     }
 
     // straight from stackoverflow

@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 //    private static final String CHANNEL_ID = "dndnotif";
 //    public static final String EXTRA_CHARACTER = "com.example.myfirstapp.CHARACTER";
     public static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 7;
+    public static final int MARGIN_FACTOR = 3;
     public static DndChar globalChar = new DndChar();
     public File saveDir;
     List<TextView> statBoxes = new ArrayList<>();
@@ -60,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         adapter1 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, DndChar.classes);
         setupBoxes();
         ConstraintLayout mainConstraint = findViewById(R.id.mainConstr);
-        mainConstraint.setPadding(0,0,0, (64)*3);
+        mainConstraint.setPadding(0,0,0, (64)*MARGIN_FACTOR);
         setupUI(findViewById(R.id.parent));
 //        createNotificationChannel();
         if (globalChar.isRolled()) {
@@ -152,11 +153,16 @@ public class MainActivity extends AppCompatActivity {
             globalChar.setRace(raceDropdown.getSelectedItem().toString(), raceDropdown.getSelectedItemPosition());
             if (globalChar.isCaster()) {
                 Class intentClass;
-                /*if (cl.equals("Wizard")) {
-                    intentClass = wizardSpells.class;
+                switch (cl) {
+                    case "Wizard":
+                        intentClass = wizardSpells.class;
+                        break;
+                    case "Sorcerer":
+                        intentClass = sorcererSpells.class;
+                        break;
+                    default:
+                        return;
                 }
-                else { return; }*/
-                intentClass = wizardSpells.class;
 
                 Intent intent = new Intent(this, intentClass);
                 startActivity(intent);

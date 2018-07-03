@@ -19,6 +19,8 @@ import org.json.JSONException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.revelationorange.dndcharactergen.MainActivity.MARGIN_FACTOR;
+
 public class wizardSpells extends AppCompatActivity {
     List<Spinner> selectedSpellsLvl1 = new ArrayList<>();
 
@@ -33,7 +35,7 @@ public class wizardSpells extends AppCompatActivity {
         String lvl1Text = "Level 1";
         ConstraintSet set = new ConstraintSet();
         ConstraintLayout spellsConstraint = findViewById(R.id.wizSpellsConstraint);
-        spellsConstraint.setPadding(0,0,0, (64+64)*3);
+        spellsConstraint.setPadding(0,0,0, (64+64)*MARGIN_FACTOR);
 
         TextView lvl0TextBox = myLib.makebox(this);
         lvl0TextBox.setText(lvl0Text);
@@ -48,8 +50,8 @@ public class wizardSpells extends AppCompatActivity {
 //        spellsConstraint.addView(save);
 
         set.clone(spellsConstraint);
-        set.connect(lvl0TextBox.getId(), ConstraintSet.TOP, spellsConstraint.getId(), ConstraintSet.TOP, 16*3);
-        set.connect(lvl0TextBox.getId(), ConstraintSet.LEFT, spellsConstraint.getId(), ConstraintSet.LEFT, 16*3);
+        set.connect(lvl0TextBox.getId(), ConstraintSet.TOP, spellsConstraint.getId(), ConstraintSet.TOP, 16*MARGIN_FACTOR);
+        set.connect(lvl0TextBox.getId(), ConstraintSet.LEFT, spellsConstraint.getId(), ConstraintSet.LEFT, 16*MARGIN_FACTOR);
         set.applyTo(spellsConstraint);
 
         JSONArray wizSpells0List;
@@ -66,8 +68,8 @@ public class wizardSpells extends AppCompatActivity {
                 curBox.setText(spellName);
                 spellsConstraint.addView(curBox);
                 set.clone(spellsConstraint);
-                set.connect(curBox.getId(), ConstraintSet.TOP, prevBox.getId(), ConstraintSet.BOTTOM, 16*3);
-                set.connect(curBox.getId(), ConstraintSet.LEFT, lvl0TextBox.getId(), ConstraintSet.LEFT, 16*3);
+                set.connect(curBox.getId(), ConstraintSet.TOP, prevBox.getId(), ConstraintSet.BOTTOM, 16*MARGIN_FACTOR);
+                set.connect(curBox.getId(), ConstraintSet.LEFT, lvl0TextBox.getId(), ConstraintSet.LEFT, 16*MARGIN_FACTOR);
                 set.applyTo(spellsConstraint);
 
 
@@ -78,10 +80,10 @@ public class wizardSpells extends AppCompatActivity {
                 prevBox = curBox;
             }
 
-            set.connect(save.getId(), ConstraintSet.TOP, spellsConstraint.getId(), ConstraintSet.TOP, 16*3);
-            set.connect(save.getId(), ConstraintSet.LEFT, longestBox.getId(), ConstraintSet.RIGHT, 8*3);
-            set.connect(lvl1TextBox.getId(), ConstraintSet.TOP, save.getId(), ConstraintSet.BOTTOM, 16*3);
-            set.connect(lvl1TextBox.getId(), ConstraintSet.LEFT, longestBox.getId(), ConstraintSet.RIGHT, 8*3);
+            set.connect(save.getId(), ConstraintSet.TOP, spellsConstraint.getId(), ConstraintSet.TOP, 16*MARGIN_FACTOR);
+            set.connect(save.getId(), ConstraintSet.LEFT, longestBox.getId(), ConstraintSet.RIGHT, 8*MARGIN_FACTOR);
+            set.connect(lvl1TextBox.getId(), ConstraintSet.TOP, save.getId(), ConstraintSet.BOTTOM, 16*MARGIN_FACTOR);
+            set.connect(lvl1TextBox.getId(), ConstraintSet.LEFT, longestBox.getId(), ConstraintSet.RIGHT, 8*MARGIN_FACTOR);
             set.applyTo(spellsConstraint);
 
             ArrayAdapter<String> lvl1Spells;
@@ -99,8 +101,8 @@ public class wizardSpells extends AppCompatActivity {
 
                 spellsConstraint.addView(lvl1spellsDropdown);
                 set.clone(spellsConstraint);
-                set.connect(lvl1spellsDropdown.getId(), ConstraintSet.TOP, prevBox.getId(), ConstraintSet.BOTTOM, 16*3);
-                set.connect(lvl1spellsDropdown.getId(), ConstraintSet.LEFT, lvl1TextBox.getId(), ConstraintSet.LEFT, 16*3);
+                set.connect(lvl1spellsDropdown.getId(), ConstraintSet.TOP, prevBox.getId(), ConstraintSet.BOTTOM, 16*MARGIN_FACTOR);
+                set.connect(lvl1spellsDropdown.getId(), ConstraintSet.LEFT, lvl1TextBox.getId(), ConstraintSet.LEFT, 16*MARGIN_FACTOR);
                 set.applyTo(spellsConstraint);
 
                 prevBox = lvl1spellsDropdown;

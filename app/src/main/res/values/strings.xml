@@ -33,4 +33,5 @@
     <string name="saveFeatsText">save feats</string>
     <string name="saveCharacterText">save character</string>
     <string name="sendCharacterText">send character</string>
+    <string name="tapToSendText">Tap a character to send</string>
 </resources>

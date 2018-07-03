@@ -57,7 +57,6 @@ public class myLib {
 
     static Spinner makeAndrDefDd(Context c) {
         Spinner retSpin = new Spinner(c);
-//        retSpin.setBackgroundColor(0xFF3f48cc);
         retSpin.setId(getNextID());
         return retSpin;
     }

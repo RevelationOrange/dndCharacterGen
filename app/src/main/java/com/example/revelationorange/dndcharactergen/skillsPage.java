@@ -14,6 +14,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.revelationorange.dndcharactergen.MainActivity.MARGIN_FACTOR;
+
 public class skillsPage extends AppCompatActivity {
     private int idStart = 100;
     private int idCounter = idStart;
@@ -28,7 +30,7 @@ public class skillsPage extends AppCompatActivity {
 
         ConstraintSet set = new ConstraintSet();
         ConstraintLayout skillsConstraint = findViewById(R.id.skillsConstraint);
-        skillsConstraint.setPadding(0,0,0, (64+64)*3);
+        skillsConstraint.setPadding(0,0,0, (64+64)*MARGIN_FACTOR);
 
         TextView tB = findViewById(R.id.unusedRanksTextbox);
         tB.setText(R.string.unusedRanksText);
@@ -66,14 +68,14 @@ public class skillsPage extends AppCompatActivity {
             skillsConstraint.addView(minus);
 
             set.clone(skillsConstraint);
-            set.connect(skillBox.getId(), ConstraintSet.TOP, prevID, ConstraintSet.BOTTOM, topMargin * 3);
-            set.connect(skillBox.getId(), ConstraintSet.LEFT, skillsConstraint.getId(), ConstraintSet.LEFT, leftMargin*3);
-            set.connect(minus.getId(), ConstraintSet.TOP, skillBox.getId(), ConstraintSet.BOTTOM, midMargin*3);
+            set.connect(skillBox.getId(), ConstraintSet.TOP, prevID, ConstraintSet.BOTTOM, topMargin * MARGIN_FACTOR);
+            set.connect(skillBox.getId(), ConstraintSet.LEFT, skillsConstraint.getId(), ConstraintSet.LEFT, leftMargin*MARGIN_FACTOR);
+            set.connect(minus.getId(), ConstraintSet.TOP, skillBox.getId(), ConstraintSet.BOTTOM, midMargin*MARGIN_FACTOR);
             set.connect(minus.getId(), ConstraintSet.LEFT, skillBox.getId(), ConstraintSet.LEFT, 0);
-            set.connect(ranksBox.getId(), ConstraintSet.TOP, skillBox.getId(), ConstraintSet.BOTTOM, midMargin*3);
-            set.connect(ranksBox.getId(), ConstraintSet.LEFT, minus.getId(), ConstraintSet.RIGHT, 16*3);
-            set.connect(plus.getId(), ConstraintSet.TOP, skillBox.getId(), ConstraintSet.BOTTOM, midMargin*3);
-            set.connect(plus.getId(), ConstraintSet.LEFT, ranksBox.getId(), ConstraintSet.RIGHT, 16*3);
+            set.connect(ranksBox.getId(), ConstraintSet.TOP, skillBox.getId(), ConstraintSet.BOTTOM, midMargin*MARGIN_FACTOR);
+            set.connect(ranksBox.getId(), ConstraintSet.LEFT, minus.getId(), ConstraintSet.RIGHT, 16*MARGIN_FACTOR);
+            set.connect(plus.getId(), ConstraintSet.TOP, skillBox.getId(), ConstraintSet.BOTTOM, midMargin*MARGIN_FACTOR);
+            set.connect(plus.getId(), ConstraintSet.LEFT, ranksBox.getId(), ConstraintSet.RIGHT, 16*MARGIN_FACTOR);
             set.applyTo(skillsConstraint);
 
             skillBoxAnchors.add(minus);

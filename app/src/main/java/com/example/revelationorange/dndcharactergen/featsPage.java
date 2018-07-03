@@ -16,6 +16,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.revelationorange.dndcharactergen.MainActivity.MARGIN_FACTOR;
+
 public class featsPage extends AppCompatActivity {
     List<Spinner> selectedFeats = new ArrayList<>();
 
@@ -47,11 +49,11 @@ public class featsPage extends AppCompatActivity {
             // clone
             set.clone(featsConstraint);
             // connect
-            set.connect(featList.getId(), ConstraintSet.TOP, featsConstraint.getId(), ConstraintSet.TOP, (1+i*4)*(16)*3);
-            set.connect(featList.getId(), ConstraintSet.LEFT, featsConstraint.getId(), ConstraintSet.LEFT, (16)*3);
-            set.connect(ddArrow.getId(), ConstraintSet.TOP, featList.getId(), ConstraintSet.TOP, 4*3);
-            set.connect(ddArrow.getId(), ConstraintSet.BOTTOM, featList.getId(), ConstraintSet.BOTTOM, 4*3);
-            set.connect(ddArrow.getId(), ConstraintSet.RIGHT, featList.getId(), ConstraintSet.RIGHT, 8*3);
+            set.connect(featList.getId(), ConstraintSet.TOP, featsConstraint.getId(), ConstraintSet.TOP, (1+i*4)*(16)*MARGIN_FACTOR);
+            set.connect(featList.getId(), ConstraintSet.LEFT, featsConstraint.getId(), ConstraintSet.LEFT, (16)*MARGIN_FACTOR);
+            set.connect(ddArrow.getId(), ConstraintSet.TOP, featList.getId(), ConstraintSet.TOP, 4*MARGIN_FACTOR);
+            set.connect(ddArrow.getId(), ConstraintSet.BOTTOM, featList.getId(), ConstraintSet.BOTTOM, 4*MARGIN_FACTOR);
+            set.connect(ddArrow.getId(), ConstraintSet.RIGHT, featList.getId(), ConstraintSet.RIGHT, 8*MARGIN_FACTOR);
             // applyto
             set.applyTo(featsConstraint);
 

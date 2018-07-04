@@ -119,7 +119,7 @@ public class wizardSpells extends AppCompatActivity {
         MainActivity.globalChar.clearSpells();
         for (Spinner sp: selectedSpellsLvl1) {
             spellName = sp.getSelectedItem().toString();
-            if (!MainActivity.globalChar.getSpellList().get(1).contains(spellName)) {
+            if (!MainActivity.globalChar.getSpellList(1).contains(spellName)) {
                 MainActivity.globalChar.addSpell(spellName, 1);
             }
         }

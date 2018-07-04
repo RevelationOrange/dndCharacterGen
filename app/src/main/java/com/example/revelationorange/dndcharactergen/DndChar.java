@@ -113,7 +113,10 @@ public class DndChar {
         for (String s: this.skillList) { this.skillRanks.add(0); }
         this.isCaster = casterList.contains(this.chClass);
         if (this.isCaster) {
-
+            List<String> lvl0Spells = new ArrayList<>();
+            this.spellList.put(0, lvl0Spells);
+            List<String> lvl1Spells = new ArrayList<>();
+            this.spellList.put(1, lvl1Spells);
         }
     }
     public void setRace(String race, int raceID) { this.race = race; this.raceID = raceID; }
@@ -121,7 +124,10 @@ public class DndChar {
     public void addFeat(String ftName) { this.featsList.add(ftName); }
     public void addSpell(String spName, Integer lvl) { this.spellList.get(lvl).add(spName); }
     public void clearFeats() { this.featsList.clear(); }
-    public void clearSpells() { this.spellList.clear(); }
+    public void clearSpells() {
+        this.spellList.get(0).clear();
+        this.spellList.get(1).clear();
+    }
 
     public String getChName() { return chName; }
     public Integer getLevel() { return level; }
@@ -131,7 +137,7 @@ public class DndChar {
     public List<String> getSkillList() { return skillList; }
     public List<Integer> getSkillRanks() { return skillRanks; }
     public List<String> getFeatsList() { return featsList; }
-    public HashMap<Integer, List<String>> getSpellList() { return spellList; }
+    public List<String> getSpellList(int lvl) { return spellList.get(lvl); }
     public String getChClass() { return chClass; }
     public Integer getChClassID() { return chClassID; }
     public String getRace() { return race; }

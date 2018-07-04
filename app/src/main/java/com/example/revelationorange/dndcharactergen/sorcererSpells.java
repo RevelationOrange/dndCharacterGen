@@ -78,6 +78,7 @@ public class sorcererSpells extends AppCompatActivity {
                 cset.connect(spellSelector.getId(), ConstraintSet.LEFT, headerBox.getId(), ConstraintSet.LEFT, 16*MARGIN_FACTOR);
                 cset.applyTo(spellsConstraint);
                 prev = spellSelector;
+                selectedSpellsLvl0.add(spellSelector);
             }
 
             headerBox = myLib.makebox(this);
@@ -101,10 +102,28 @@ public class sorcererSpells extends AppCompatActivity {
                 cset.connect(spellSelector.getId(), ConstraintSet.LEFT, headerBox.getId(), ConstraintSet.LEFT, 16*MARGIN_FACTOR);
                 cset.applyTo(spellsConstraint);
                 prev = spellSelector;
+                selectedSpellsLvl1.add(spellSelector);
             }
 
         } catch (JSONException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void saveSpells(View v) {
+        String spellname;
+        MainActivity.globalChar.clearSpells();
+        for (Spinner selectedSpell0: selectedSpellsLvl0) {
+            spellname = selectedSpell0.getSelectedItem().toString();
+            if (!MainActivity.globalChar.getSpellList(0).contains(spellname)) {
+                MainActivity.globalChar.addSpell(spellname, 0);
+            }
+        }
+        for (Spinner selectedSpell1: selectedSpellsLvl1) {
+            spellname = selectedSpell1.getSelectedItem().toString();
+            if (!MainActivity.globalChar.getSpellList(1).contains(spellname)) {
+                MainActivity.globalChar.addSpell(spellname, 1);
+            }
         }
     }
 

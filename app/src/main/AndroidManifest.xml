@@ -36,7 +36,11 @@
         <activity android:name=".featsPage" />
         <activity android:name=".wizardSpells" />
         <activity android:name=".sendPage" />
-        <activity android:name=".sorcererSpells"></activity>
+        <activity android:name=".sorcererSpells" />
+        <activity android:name=".rangerSpells" />
+        <activity android:name=".druidSpells" />
+        <activity android:name=".clericSpells" />
+        <activity android:name=".bardSpells"></activity>
     </application>
 
 </manifest>

@@ -24,7 +24,9 @@
     <string name="skillsText">Skills</string>
     <string name="spellsText">Spells</string>
     <string name="spellsKnownText">Spells known</string>
+    <string name="spellsPreppedText">Default spells prepared</string>
     <string name="saveSelectedSpellsText">save selected spells</string>
+    <string name="saveSpellsText">save spells</string>
     <string name="title_activity_skills_page">skillsPage</string>
     <string name="action_settings">Settings</string>
     <string name="levelText">Level</string>
@@ -34,4 +36,6 @@
     <string name="saveCharacterText">save character</string>
     <string name="sendCharacterText">send character</string>
     <string name="tapToSendText">Tap a character to send</string>
+    <string name="level0Text">Level 0</string>
+    <string name="level1Text">Level 1</string>
 </resources>

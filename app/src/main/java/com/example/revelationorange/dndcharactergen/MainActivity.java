@@ -160,6 +160,15 @@ public class MainActivity extends AppCompatActivity {
                     case "Sorcerer":
                         intentClass = sorcererSpells.class;
                         break;
+                    case "Druid":
+                        intentClass = druidSpells.class;
+                        break;
+                    case "Cleric":
+                        intentClass = clericSpells.class;
+                        break;
+                    case "Bard":
+                        intentClass = bardSpells.class;
+                        break;
                     default:
                         return;
                 }

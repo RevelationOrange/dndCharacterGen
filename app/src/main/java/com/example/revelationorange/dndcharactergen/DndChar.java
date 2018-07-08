@@ -37,7 +37,7 @@ public class DndChar {
     private List<String> featsList = new ArrayList<>();
     private HashMap<Integer, List<String>> spellList = new HashMap<>();
     private List<Integer> skillRanks = new ArrayList<>();
-    private Integer Str, Dex, Con, Int, Wis, Cha, level, xp, speed, initiative, ac, hitDice, skillRanksPerLvl, chClassID, raceID;
+    private Integer level, xp, speed, initiative, ac, hitDice, skillRanksPerLvl, chClassID, raceID;
     private boolean rolled, isCaster;
 
     private static String[] casters = {"Bard", "Cleric", "Druid", "Paladin", "Ranger", "Sorcerer", "Wizard"};

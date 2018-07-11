@@ -35,7 +35,12 @@ public class clericSpells extends AppCompatActivity {
         spellsConstraint.setPadding(0,0,0,64*MARGIN_FACTOR);
 
         int n0LvlSpellsPerDay = 3;
-        int n1LvlSpellsPerDay = 1; // + bonus from bonus spells table TODO: implement that table
+        int n1LvlSpellsPerDay = 0;
+        try {
+            n1LvlSpellsPerDay = 1 + DndChar.classDict.getJSONObject("general").getJSONArray("bonusSpells").getJSONArray(MainActivity.globalChar.getBaseStats().get(4)).getInt(1);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         String lvl0Text = getResources().getString(R.string.level0Text);
         String lvl1Text = getResources().getString(R.string.level1Text);

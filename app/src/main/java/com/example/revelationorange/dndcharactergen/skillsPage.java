@@ -96,7 +96,7 @@ public class skillsPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Integer sp = MainActivity.globalChar.getSkillRanks().get(index)+1;
-                MainActivity.globalChar.getSkillRanks().set(index, sp);
+                MainActivity.globalChar.setSkillRank(index, sp);
                 skillRows.get(index).setText(sp.toString());
                 Integer newUsp = Integer.parseInt(unusedRanksBox.getText().toString())-1;
                 unusedRanksBox.setText(newUsp.toString());
@@ -109,7 +109,7 @@ public class skillsPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Integer sp = MainActivity.globalChar.getSkillRanks().get(index)-1;
-                MainActivity.globalChar.getSkillRanks().set(index, sp);
+                MainActivity.globalChar.setSkillRank(index, sp);
                 skillRows.get(index).setText(sp.toString());
                 Integer newUsp = Integer.parseInt(unusedRanksBox.getText().toString())+1;
                 unusedRanksBox.setText(newUsp.toString());

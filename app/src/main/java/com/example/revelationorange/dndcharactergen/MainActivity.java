@@ -202,6 +202,19 @@ public class MainActivity extends AppCompatActivity {
                 for (int i = 0; i < DndChar.statNamesShort.length; i++) {
                     csvString.addLine(DndChar.statNamesShort[i], bStats.get(i), bStatMods.get(i));
                 }
+                csvString.addLine("Skill", "ranks");
+                for (int i = 0; i < globalChar.getSkillList().size(); i++) {
+                    csvString.addLine(globalChar.getSkillList().get(i), globalChar.getSkillRanks().get(i));
+                }
+                csvString.addLine("Feats");
+                for (String fn: globalChar.getFeatsList()) { csvString.addLine(fn); }
+                if (globalChar.isCaster()) {
+                    csvString.addLine("Spells");
+                    csvString.addLine("Level 0");
+                    for (String sn: globalChar.getSpellList(0)) { csvString.addLine(sn); }
+                    csvString.addLine("Level 1");
+                    for (String sn: globalChar.getSpellList(1)) { csvString.addLine(sn); }
+                }
                 try {
                     FileWriter fw = new FileWriter(saveFile);
                     fw.write(csvString.getStr());

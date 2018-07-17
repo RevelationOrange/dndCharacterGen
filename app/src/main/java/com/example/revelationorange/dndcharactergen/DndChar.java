@@ -34,9 +34,9 @@ public class DndChar {
     private List<Integer> baseStats = new ArrayList<>(nBaseStats);
     private List<Integer> baseStatMods = new ArrayList<>(nBaseStats);
     private List<String> skillList = new ArrayList<>();
+    private List<Integer> skillRanks = new ArrayList<>();
     private List<String> featsList = new ArrayList<>();
     private HashMap<Integer, List<String>> spellList = new HashMap<>();
-    private List<Integer> skillRanks = new ArrayList<>();
     private Integer level, xp, speed, initiative, ac, hitDice, skillRanksPerLvl, chClassID, raceID;
     private boolean rolled, isCaster;
 
@@ -128,6 +128,7 @@ public class DndChar {
         this.spellList.get(0).clear();
         this.spellList.get(1).clear();
     }
+    public void setSkillRank(int i, int val) { this.skillRanks.set(i, val); }
 
     public String getChName() { return chName; }
     public Integer getLevel() { return level; }
